@@ -12,6 +12,14 @@ const io = new Server(server);
 app.get('/', (req, res) => res.sendFile(__dirname + '/index.html'));
 
 io.on('connection', socket => {
-  console.log('a user connected');
+  socket.on('chat message', msg => {
+    io.emit('chat message', msg);
+  });
 });
+
+io.emit('some event', {
+  someProperty: 'some value',
+  otherProperty: 'other value',
+});
+
 server.listen(PORT, () => console.log(`✅ server is connected to ${PORT}`));
