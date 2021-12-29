@@ -77,6 +77,7 @@
         form.addEventListener('submit', e => {
             e.preventDefault()
             if (input.value) {
+                // 2. (메세지 보내면) 'chat message' socket.emit 으로 연결 되어있는 서버에 메세지 보내기
                 socket.emit('chat message', input.value)
                 input.value = ''
             }
